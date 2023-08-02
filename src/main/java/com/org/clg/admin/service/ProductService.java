@@ -14,9 +14,11 @@ public class ProductService {
 	@Autowired
 	ProductRepository productRepository;
 	
-	public List<Product> all()
-	{
-		return productRepository.findAll();
+	public List<Product> all(Integer page)
+	{ 
+		 Pageable pa=PageRequest.of(page);
+	    Page<Product> productpage= categoryRepository.findAll(pa);
+		return (List<Product>)productpage.getContent();
 	}
 	
 	public Product getById(long id)

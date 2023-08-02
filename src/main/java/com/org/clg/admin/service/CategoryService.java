@@ -14,9 +14,12 @@ public class CategoryService {
 	@Autowired
 	CategoryRepository categoryRepository;
 	
-	public List<Category> all()
+	public List<Category> all(Integer page)
 	{
-		return (List<Category>) categoryRepository.findAll();
+		Pageable pa=PageRequest.of(page);
+	   Page<Category> categorypage= categoryRepository.findAll(pa);
+	   return (List<Category>)categorypage.getContent();
+	   
 	}
 	
 	public Category getCategoryById(long id)

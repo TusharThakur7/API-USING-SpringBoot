@@ -27,8 +27,10 @@ public class AdminController {
 	 //Our Controller For Categories
 	
 	@GetMapping("/Categories?page=3")
-	public List<Category> getuser()
+	public ResponseEntity<List<<Category>> all(
+		@RequestParam(Value="page",required=false) Integer page)
 	{
+		 List<Category>all=this.categoryService.all(page);
 		return categoryService.all();
 	}
 	
@@ -58,8 +60,10 @@ public class AdminController {
      // Our Controller For Products
 	
 	@GetMapping("/products?page=2/")
-	public List<Product> get()
-	{
+	public ResponseEntity<List<<Product>> all(
+		@RequestParam(Value="page",default="2",required=false) Integer page)
+	{ 
+		 List<Product>all=this.ProductService.all(page);
 		return productService.all();
 	}
 	
