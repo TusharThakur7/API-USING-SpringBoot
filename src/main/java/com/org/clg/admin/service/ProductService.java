@@ -50,6 +50,7 @@ public class ProductService {
 			p.setSize(product.getSize());
 			p.setPrice(product.getPrice());
 			p.setName(product.getName());
+			p.setCategoryName(product.getCategoryName());
 			p.setDescription(product.getDescription());
 			return productRepository.save(p);
 		}

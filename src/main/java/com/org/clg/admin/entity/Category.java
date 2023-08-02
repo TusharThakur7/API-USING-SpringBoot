@@ -25,6 +25,12 @@ public class Category {
 	@Column(name="details")
 	private String details;
 
+ @OneToMany(
+        mappedBy = "categoryname",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+
 	public Category() {
 		
 	}

@@ -18,6 +18,9 @@ public class Product {
 	
 	@Column(name="name")
 	private String name;
+
+	@Column(name="categoryname")
+	private String name;
 	
 	@Column(name="size")
 	private String size;
@@ -28,14 +31,17 @@ public class Product {
 	@Column(name="description")
 	private String description;
 
+	 @ManyToOne(fetch = FetchType.LAZY)
+
 	public Product() {
 		
 	}
 	
-	public Product(int id, String name, String size, String price, String description) {
+	public Product(int id,  String name String categoryname, String size, String price, String description) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.categoryname= categoryname;
 		this.size = size;
 		this.price = price;
 		this.description = description;
@@ -55,6 +61,14 @@ public class Product {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getCategoryName() {
+		return categoryname;
+	}
+
+	public void setCategoryName(String categoryname) {
+		this.categoryname= categoryname;
 	}
 
 	public String getSize() {
@@ -90,6 +104,7 @@ public class Product {
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((categoryname == null) ? 0 : categoryname.hashCode());
 		return result;
 	}
 
@@ -124,6 +139,11 @@ public class Product {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
+		if (categoryname == null) {
+			if (other.categoryname != null)
+				return false;
+		} else if (!categoryname.equals(other.categoryname))
+			return false;	
 		return true;
 	}
 }
